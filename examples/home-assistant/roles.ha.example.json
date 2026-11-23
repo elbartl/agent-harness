@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "description": "Example Home Assistant roles configuration for agent-harness",
+  "roles": {
+    "full": {
+      "description": "Administrative role with full access and HA restart permission",
+      "requiresGrant": true,
+      "fallbackRole": "ops",
+      "exec": "host",
+      "files": "unrestricted",
+      "allowHaRestart": true,
+      "bypassDomainGuards": ["home-assistant"],
+      "allow": ["*"],
+      "deny": [],
+      "mcpServers": ["*"]
+    },
+    "ops": {
+      "description": "Operations role without HA restart permission",
+      "requiresGrant": false,
+      "fallbackRole": null,
+      "exec": "sandbox",
+      "files": "sandbox",
+      "allowHaRestart": false,
+      "haGuardedTools": ["ha_call_service", "ha_bulk_control", "ha_call_event"],
+      "allow": ["*"],
+      "deny": ["mcp__ha-mcp__ha_restart"],
+      "mcpServers": ["ha-mcp"]
+    },
+    "cfg": {
+      "description": "Configuration modification role without HA restart permission",
+      "requiresGrant": false,
+      "fallbackRole": null,
+      "exec": "sandbox",
+      "files": "sandbox",
+      "allowHaRestart": false,
+      "haGuardedTools": ["ha_call_service", "ha_bulk_control", "ha_call_event"],
+      "allow": ["*"],
+      "deny": ["mcp__ha-mcp__ha_restart"],
+      "mcpServers": ["ha-mcp"]
+    },
+    "ro": {
+      "description": "Read-only role for Home Assistant sensors and state queries",
+      "requiresGrant": false,
+      "fallbackRole": null,
+      "exec": "none",
+      "files": "none",
+      "allow": ["ha_get_state", "Read", "Glob", "Grep"],
+      "deny": [],
+      "mcpServers": ["ha-mcp"]
+    }
+  }
+}

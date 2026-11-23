@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "default": "none",
+  "agents": {
+    "operator-agent": "operator",
+    "admin-agent": "admin",
+    "reader-agent": "reader",
+    "mcp-agent": "mcp-user",
+    "adapter-agent": {
+      "role": "operator",
+      "adapter": "test-adapter",
+      "adapterConfig": {
+        "timeoutMs": 5000
+      }
+    },
+    "invalid-agent-number": 12345,
+    "invalid-agent-array": ["operator"]
+  }
+}

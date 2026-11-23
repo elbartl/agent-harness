@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentHarnessAssignments",
+  "description": "Agent assignments mapping schema for Agent Harness",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "default": {
+      "type": "string"
+    },
+    "agents": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "Direct role name string"
+          },
+          {
+            "type": "object",
+            "description": "Agent configuration object with role, adapter, and adapterConfig",
+            "properties": {
+              "role": {
+                "type": "string",
+                "description": "Target role name"
+              },
+              "adapter": {
+                "type": "string",
+                "description": "Execution adapter name (e.g. cc-proxy)"
+              },
+              "adapterConfig": {
+                "type": "object",
+                "description": "Adapter-specific configuration options"
+              }
+            },
+            "required": ["role"],
+            "additionalProperties": true
+          }
+        ]
+      }
+    },
+    "unverified": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["agents"]
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentHarnessRoles",
+  "description": "Role definitions schema for Agent Harness",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "roles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "requiresGrant": { "type": "boolean" },
+          "fallbackRole": { "type": ["string", "null"] },
+          "exec": { "type": "string", "enum": ["none", "sandbox", "host"] },
+          "files": { "type": "string", "enum": ["none", "sandbox", "unrestricted"] },
+          "allow": { "type": "array", "items": { "type": "string" } },
+          "allowFile": { "type": ["string", "null"] },
+          "allowFileEnv": { "type": ["string", "null"] },
+          "deny": { "type": "array", "items": { "type": "string" } },
+          "denyFile": { "type": ["string", "null"] },
+          "denyFileEnv": { "type": ["string", "null"] },
+          "disallowPatterns": { "type": "array", "items": { "type": "string" } },
+          "categories": { "type": "array", "items": { "type": "string" } },
+          "mcpServers": { "type": "array", "items": { "type": "string" } },
+          "bypassDomainGuards": { "type": "array", "items": { "type": "string" } },
+          "allowHaRestart": { "type": "boolean" }
+        },
+        "required": ["requiresGrant", "exec", "files", "allow", "deny"]
+      }
+    }
+  },
+  "required": ["roles"]
+}

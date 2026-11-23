@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "roles": {
+    "admin": {
+      "exec": "host",
+      "files": "unrestricted",
+      "allow": ["*"],
+      "deny": [],
+      "mcpServers": ["*"],
+      "allowHaRestart": true,
+      "openclaw": { "allow": ["*"] }
+    },
+    "operator": {
+      "exec": "sandbox",
+      "files": "sandbox",
+      "allow": ["exec", "read", "write", "call_mcp_tool", "ha:*", "mcp:*"],
+      "deny": [],
+      "mcpServers": ["ha", "test-server"],
+      "disallowPatterns": ["**/.ssh/**", "**/secrets.yaml"],
+      "openclaw": { "allow": [] }
+    },
+    "reader": {
+      "exec": "none",
+      "files": "none",
+      "allow": ["read"],
+      "deny": [],
+      "mcpServers": [],
+      "openclaw": { "allow": [] }
+    },
+    "mcp-user": {
+      "exec": "none",
+      "files": "none",
+      "allow": ["mcp__test-server__read_data", "mcp__test-server__echo"],
+      "deny": ["mcp__test-server__delete_all"],
+      "mcpServers": ["test-server"],
+      "disallowPatterns": [],
+      "openclaw": { "allow": [] }
+    },
+    "none": {
+      "exec": "none",
+      "files": "none",
+      "allow": [],
+      "deny": [],
+      "mcpServers": [],
+      "openclaw": { "allow": [] }
+    }
+  }
+}

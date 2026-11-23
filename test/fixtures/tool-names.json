@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "tools": {
+    "exec": { "category": "exec" },
+    "read": { "category": "read" },
+    "write": { "category": "write" }
+  },
+  "mcpPrefixes": {},
+  "serverAliases": {
+    "test-srv": "test-server"
+  }
+}
